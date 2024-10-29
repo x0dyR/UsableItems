@@ -3,40 +3,43 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider)), RequireComponent(typeof(Rigidbody))]
 public class Character : MonoBehaviour
 {
-    [SerializeField] private Transform _itemHandle;
+    [SerializeField] private UsableItem _item;
+    [SerializeField] private Transform _itemHandleTransform;
+
+    [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _shootPoint;
 
-    [SerializeField] private UsableItem _item;
-    
-    [SerializeField]private float _rotationAngleSpeed;
+    [SerializeField] private int _health;
 
-    private CharacterData _characterData;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _rotationAngleSpeed;
 
     private InputSystem _input;
 
     private Mover _mover;
-
+    
     private Vector3 _inputDirection;
+
+    private Inventory _inventory;
+    
+    private ItemCollector _itemCollector;
 
     private CapsuleCollider _collider;
 
     private Rigidbody _rigidbody;
 
-    public CharacterData CharacterData => _characterData;
-
-    public Transform ShootPoint => _shootPoint;
-
-    [field: SerializeField] public float Speed { get; private set; }
-    [field: SerializeField] public int Health { get; private set; }
-    [field: SerializeField] public Bullet BulletPrefab { get; private set; }
+    [field: SerializeField] public EntityData CharacterData { get; private set; }
 
     private void Awake()
     {
         _input = new InputSystem();
 
-        _characterData = new CharacterData(Health, Speed, BulletPrefab);
+        CharacterData = new EntityData(_health, _speed, _bulletPrefab, _shootPoint);
 
-        _mover = new Mover(transform, _characterData.Speed,_rotationAngleSpeed);
+        _mover = new Mover(transform, CharacterData, _rotationAngleSpeed);
+
+        _inventory = new Inventory(_itemHandleTransform);
+        _itemCollector = new ItemCollector(_inventory);
 
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.isKinematic = true;
@@ -48,32 +51,21 @@ public class Character : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (_item == null)
+            if (_inventory.HasItem() == false)
                 return;
-            _characterData = _item.Use(this);
 
-            Destroy(_item.gameObject);
+            _item = _inventory.GetItem();
 
-            _mover = new Mover(transform, _characterData.Speed,_rotationAngleSpeed);
+            _item.UseItem(CharacterData);
 
-            Speed = _characterData.Speed;
-            Health = _characterData.Health;
-            BulletPrefab = _characterData.BulletPrefab;
+            _speed = CharacterData.Speed;
+            _health = CharacterData.Health;
         }
 
         _mover.ProcessMove(_inputDirection);
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out UsableItem item))
-        {
-            if (_item == null)
-            {
-                _item = item;
-                _item.transform.SetParent(_itemHandle.transform);
-                _item.transform.localPosition = Vector3.zero;
-            }
-        }
-    }
+        => _itemCollector.TryColllectItem(other);
+
 }

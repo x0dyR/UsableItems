@@ -1,18 +1,21 @@
 using System;
+using UnityEngine;
 
-public class CharacterData
+public class EntityData
 {
     private int _health;
-
     private float _speed;
 
     private Bullet _bulletPrefab;
+    
+    private Transform _transform;
 
-    public CharacterData(int health, float speed, Bullet bulletPrefab)
+    public EntityData(int health, float speed, Bullet bulletPrefab,Transform transform)
     {
-        _health = health;
-        _speed = speed;
+        Health = health;
+        Speed = speed;
         _bulletPrefab = bulletPrefab;
+        _transform = transform;
     }
 
     public int Health
@@ -26,9 +29,11 @@ public class CharacterData
             _health = value;
         }
     }
+
     public float Speed
     {
-        get => _speed; set
+        get => _speed;
+        set
         {
             if (value < 0)
                 throw new ArgumentOutOfRangeException("Speed cant be lower 0");
@@ -36,14 +41,28 @@ public class CharacterData
             _speed = value;
         }
     }
+
     public Bullet BulletPrefab
     {
-        get => _bulletPrefab; set
+        get => _bulletPrefab;
+        set
         {
-            if (_bulletPrefab == null)
-                throw new ArgumentException("No bullet prefab");
+            if (value == null)
+                throw new ArgumentNullException("Bullet is null");
 
             _bulletPrefab = value;
+        }
+    }
+
+    public Transform Transform
+    {
+        get => _transform;
+        set
+        {
+            if (value == null)
+                throw new ArgumentNullException("Transform is null");
+
+            _transform = value;
         }
     }
 }
