@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac528b07dc333f4b9ba5df37547ae0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _angle: 90
+  _angle: 30
 --- !u!1001 &4974581315692957383
 PrefabInstance:
   m_ObjectHideFlags: 0
