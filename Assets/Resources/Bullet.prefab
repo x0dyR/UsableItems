@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc18d031570b89e45abcb97bd9f4781d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Rigidbody>k__BackingField: {fileID: 3813833687484295550}
-  <BulletSpeed>k__BackingField: 10
-  <DestroyTime>k__BackingField: 1.5
+  _rigidbody: {fileID: 3813833687484295550}
+  Collider: {fileID: 7114087975730568732}
+  _bulletSpeed: 10
+  _destroyTime: 1.5
 --- !u!54 &3813833687484295550
 Rigidbody:
   m_ObjectHideFlags: 0

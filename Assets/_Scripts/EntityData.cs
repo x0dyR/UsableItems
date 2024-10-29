@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class EntityData
 {
-    [field: SerializeField] protected int _health;
-    [field: SerializeField] protected float _speed;
+    private int _health;
+    private float _speed;
 
-    protected Transform _transform;
+    private Bullet _bulletPrefab;
+    
+    private Transform _transform;
 
-    public EntityData(int health, float speed, Transform transform)
+    public EntityData(int health, float speed, Bullet bulletPrefab,Transform transform)
     {
         Health = health;
         Speed = speed;
+        _bulletPrefab = bulletPrefab;
         _transform = transform;
     }
 
@@ -39,12 +42,24 @@ public class EntityData
         }
     }
 
+    public Bullet BulletPrefab
+    {
+        get => _bulletPrefab;
+        set
+        {
+            if (value == null)
+                throw new ArgumentNullException("Bullet is null");
+
+            _bulletPrefab = value;
+        }
+    }
+
     public Transform Transform
     {
         get => _transform;
         set
         {
-            if(value == null)
+            if (value == null)
                 throw new ArgumentNullException("Transform is null");
 
             _transform = value;

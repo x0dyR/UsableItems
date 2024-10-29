@@ -3,45 +3,42 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider)), RequireComponent(typeof(Rigidbody))]
 public class Character : MonoBehaviour
 {
+    [SerializeField] private UsableItem _item;
     [SerializeField] private Transform _itemHandleTransform;
+
+    [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _shootPoint;
 
-    [SerializeField] private UsableItem _item;
+    [SerializeField] private int _health;
 
+    [SerializeField] private float _speed;
     [SerializeField] private float _rotationAngleSpeed;
-
-    [field: SerializeField] private int _health;
-    [field: SerializeField] private float _speed;
-    [field: SerializeField] private Bullet _bulletPrefab;
 
     private InputSystem _input;
 
     private Mover _mover;
+    
+    private Vector3 _inputDirection;
 
     private Inventory _inventory;
-
+    
     private ItemCollector _itemCollector;
-
-    private Vector3 _inputDirection;
 
     private CapsuleCollider _collider;
 
     private Rigidbody _rigidbody;
 
-    [field: SerializeField] public CharacterData CharacterData { get; private set; }
-
-    public Transform ShootPoint => _shootPoint;
+    [field: SerializeField] public EntityData CharacterData { get; private set; }
 
     private void Awake()
     {
         _input = new InputSystem();
 
-        CharacterData = new CharacterData(_health, _speed, _bulletPrefab, transform);
+        CharacterData = new EntityData(_health, _speed, _bulletPrefab, _shootPoint);
 
         _mover = new Mover(transform, CharacterData, _rotationAngleSpeed);
 
         _inventory = new Inventory(_itemHandleTransform);
-
         _itemCollector = new ItemCollector(_inventory);
 
         _rigidbody = GetComponent<Rigidbody>();

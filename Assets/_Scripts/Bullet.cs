@@ -3,17 +3,16 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class Bullet : MonoBehaviour
 {
-    [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
+    [SerializeField] private Rigidbody _rigidbody;
 
-    [field: SerializeField] public float BulletSpeed { get; private set; }
+    [SerializeField]private CapsuleCollider Collider;
 
-    [field: SerializeField] public float DestroyTime { get; private set; }
-
-    public CapsuleCollider Collider { get; private set; }
+    [SerializeField] private float _bulletSpeed;
+    [SerializeField] private float _destroyTime;
 
     public void Launch(Vector3 direction)
     {
-        Rigidbody.AddForce(direction * BulletSpeed, ForceMode.Impulse);
-        Destroy(gameObject, DestroyTime);
+        _rigidbody.AddForce(direction * _bulletSpeed, ForceMode.Impulse);
+        Destroy(gameObject, _destroyTime);
     }
 }

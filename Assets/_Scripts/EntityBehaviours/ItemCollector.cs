@@ -13,14 +13,10 @@ public class ItemCollector
 
     public void TryColllectItem(Collider collider)
     {
-        Debug.Log(collider);
-
         if (collider.TryGetComponent(out UsableItem item))
         {
             if (_inventory.HasItem() == false)
-            {
                 _inventory.PutItem(item);
-            }
         }
     }
 }
