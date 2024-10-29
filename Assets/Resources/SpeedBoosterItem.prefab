@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1511934923626402543}
-  - component: {fileID: 62061470800507973}
+  - component: {fileID: -7811906119270075681}
   - component: {fileID: 5989650533007738395}
+  - component: {fileID: 70178381250664436}
   m_Layer: 0
   m_Name: SpeedBoosterItem
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   - {fileID: 3909673482008922716}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &62061470800507973
+--- !u!114 &-7811906119270075681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,11 +44,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2270325585481510550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e650ea35acb0f94cb32891bb2841ae4, type: 3}
+  m_Script: {fileID: 11500000, guid: b09c17971fb3248408f89c972b8d2d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _angle: 180
-  <SpeedBoostAmount>k__BackingField: 5
+  <SpeedBoostAmount>k__BackingField: 10
 --- !u!135 &5989650533007738395
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -63,12 +63,25 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.75
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &70178381250664436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2270325585481510550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac528b07dc333f4b9ba5df37547ae0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _angle: 90
 --- !u!1 &9212745641257849258
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 9212745641257849258}
   serializedVersion: 2
   m_LocalRotation: {x: 0.12607859, y: -0.03378266, z: 0.25660488, w: 0.9576622}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:

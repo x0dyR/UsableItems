@@ -6,14 +6,14 @@ public class Mover
 
     private Transform _transform;
 
-    private float _speed;
+    private EntityData _entityData;
 
     private float _rotationAngleSpeed;
 
-    public Mover(Transform transform, float speed,float roatationAngleSpeed)
+    public Mover(Transform transform, EntityData entityData, float roatationAngleSpeed)
     {
         _transform = transform;
-        _speed = speed;
+        _entityData = entityData;
         _rotationAngleSpeed = roatationAngleSpeed;
     }
 
@@ -21,7 +21,7 @@ public class Mover
     {
         if (direction.sqrMagnitude > DeadZone * DeadZone)
         {
-            _transform.position += direction * _speed * Time.deltaTime;
+            _transform.position += direction * _entityData.Speed * Time.deltaTime;
             _transform.forward = Vector3.Lerp(_transform.position, direction, _rotationAngleSpeed);
         }
     }

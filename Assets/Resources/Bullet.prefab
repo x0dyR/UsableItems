@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Rigidbody>k__BackingField: {fileID: 3813833687484295550}
-  <BulletSpeed>k__BackingField: 50
+  <BulletSpeed>k__BackingField: 10
   <DestroyTime>k__BackingField: 1.5
 --- !u!54 &3813833687484295550
 Rigidbody:

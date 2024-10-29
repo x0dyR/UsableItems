@@ -80,14 +80,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f03bae975de6f469129fb69babfcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemHandle: {fileID: 7138483242452861143}
+  _itemHandleTransform: {fileID: 7138483242452861143}
   _shootPoint: {fileID: 2067794792315563470}
   _item: {fileID: 0}
   _rotationAngleSpeed: 30
-  <Speed>k__BackingField: 10
-  <Health>k__BackingField: 100
-  <BulletPrefab>k__BackingField: {fileID: -4366318880836802066, guid: deb5aa374a60ddb44962b9e61a08de58,
+  _health: 100
+  _speed: 10
+  _bulletPrefab: {fileID: -4366318880836802066, guid: deb5aa374a60ddb44962b9e61a08de58,
     type: 3}
+  <CharacterData>k__BackingField:
+    _health: 0
+    _speed: 0
 --- !u!136 &3659136407054407656
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -110,7 +113,7 @@ CapsuleCollider:
   m_Radius: 0.75
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.75, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &2420010466496805465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,8 +136,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

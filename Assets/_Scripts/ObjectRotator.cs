@@ -1,19 +1,11 @@
 using UnityEngine;
 
-public class ObjectRotator
+public class ObjectRotator : MonoBehaviour
 {
-    private Transform _transform;
+    [SerializeField] private float _angle;
 
-    private float _angle;
-
-    public ObjectRotator(Transform transform, float angle)
+    private void Update()
     {
-        _transform = transform;
-        _angle = angle;
-    }
-
-    public void RotateObject()
-    {
-        _transform.Rotate(Vector3.up, _angle * Time.deltaTime);
+        transform.Rotate(Vector3.up, _angle * Time.deltaTime);
     }
 }
