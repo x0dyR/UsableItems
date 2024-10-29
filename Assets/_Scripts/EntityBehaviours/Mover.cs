@@ -23,6 +23,8 @@ public class Mover
             return;
 
         _transform.position += direction * _entityData.Speed * Time.deltaTime;
-        _transform.forward = Vector3.Lerp(_transform.position, direction, _rotationAngleSpeed);
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        _transform.rotation = Quaternion.Lerp(_transform.rotation, targetRotation, _rotationAngleSpeed * Time.deltaTime);
     }
 }
