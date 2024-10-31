@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class EntityData
 {
+    public event Action<int> HealthChanged;
+    public event Action<float> SpeedChanged;
+
     private int _health;
     private float _speed;
-
-    private Bullet _bulletPrefab;
     
     private Transform _transform;
 
-    public EntityData(int health, float speed, Bullet bulletPrefab,Transform transform)
+    public EntityData(int health, float speed, Transform transform)
     {
         Health = health;
         Speed = speed;
-        _bulletPrefab = bulletPrefab;
         _transform = transform;
     }
 
@@ -27,6 +27,7 @@ public class EntityData
                 throw new ArgumentOutOfRangeException("Health cant be lower 0");
 
             _health = value;
+            HealthChanged?.Invoke(_health);
         }
     }
 
@@ -39,18 +40,7 @@ public class EntityData
                 throw new ArgumentOutOfRangeException("Speed cant be lower 0");
 
             _speed = value;
-        }
-    }
-
-    public Bullet BulletPrefab
-    {
-        get => _bulletPrefab;
-        set
-        {
-            if (value == null)
-                throw new ArgumentNullException("Bullet is null");
-
-            _bulletPrefab = value;
+            SpeedChanged?.Invoke(_speed);
         }
     }
 

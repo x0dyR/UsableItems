@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class SpeedBooster : UsableItem
 {
-    [field: SerializeField] public int SpeedBoostAmount { get; private set; }
+    [SerializeField] private int _speedBoostAmount;
 
     public override void UseItem(EntityData data)
     {
-        data.Speed += SpeedBoostAmount;
-        Destroy(gameObject);
+        base.UseItem(data);
+
+        data.Speed += _speedBoostAmount;
+        Destroy(gameObject, _destParticleSystem.main.duration);
     }
 }

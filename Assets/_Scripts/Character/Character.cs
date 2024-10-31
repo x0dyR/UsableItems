@@ -6,7 +6,6 @@ public class Character : MonoBehaviour
     [SerializeField] private UsableItem _item;
     [SerializeField] private Transform _itemHandleTransform;
 
-    [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _shootPoint;
 
     [SerializeField] private int _health;
@@ -17,11 +16,11 @@ public class Character : MonoBehaviour
     private InputSystem _input;
 
     private Mover _mover;
-    
+
     private Vector3 _inputDirection;
 
     private Inventory _inventory;
-    
+
     private ItemCollector _itemCollector;
 
     private CapsuleCollider _collider;
@@ -34,7 +33,7 @@ public class Character : MonoBehaviour
     {
         _input = new InputSystem();
 
-        CharacterData = new EntityData(_health, _speed, _bulletPrefab, _shootPoint);
+        CharacterData = new EntityData(_health, _speed, _shootPoint);
 
         _mover = new Mover(transform, CharacterData, _rotationAngleSpeed);
 
@@ -57,9 +56,6 @@ public class Character : MonoBehaviour
             _item = _inventory.GetItem();
 
             _item.UseItem(CharacterData);
-
-            _speed = CharacterData.Speed;
-            _health = CharacterData.Health;
         }
 
         _mover.ProcessMove(_inputDirection);
@@ -68,4 +64,21 @@ public class Character : MonoBehaviour
     private void OnTriggerEnter(Collider other)
         => _itemCollector.TryColllectItem(other);
 
+    private void OnEnable()
+    {
+        CharacterData.HealthChanged += OnHealthChanged;
+        CharacterData.SpeedChanged += OnSpeedChanged;
+    }
+
+    private void OnDisable()
+    {
+        CharacterData.HealthChanged -= OnHealthChanged;
+        CharacterData.SpeedChanged -= OnSpeedChanged;
+    }
+
+    private void OnHealthChanged(int healthAmount)
+        => _health = healthAmount;
+
+    private void OnSpeedChanged(float speedAmount)
+        => _speed = speedAmount;
 }

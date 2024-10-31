@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class HealthBooster : UsableItem
 {
-    [field: SerializeField] public int HealthBoostAmount { get; private set; }
+    [SerializeField] private int _healthBoostAmount;
 
     public override void UseItem(EntityData data)
     {
-        data.Health += HealthBoostAmount;
-        Destroy(gameObject);
+        base.UseItem(data);
+
+        data.Health += _healthBoostAmount;
+        Destroy(gameObject, _destParticleSystem.main.duration);
     }
 }
