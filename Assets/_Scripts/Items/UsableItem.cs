@@ -2,12 +2,11 @@ using UnityEngine;
 
 public abstract class UsableItem : MonoBehaviour
 {
-    [SerializeField] protected ParticleSystem _destParticleSystem;
+    [SerializeField] protected GameObject VisualModel;
+    [field: SerializeField] public ParticleSystem DestroyParticleSystem { get; protected set; }
 
     public virtual void UseItem(EntityData data)
     {
-        _destParticleSystem.Play();
+        DestroyParticleSystem.Play();
     }
-
-    public ParticleSystem DestParticleSystem => _destParticleSystem;
 }

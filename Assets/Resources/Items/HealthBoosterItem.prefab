@@ -80,7 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfad092b6f302d14ea5bbabbc7070b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destParticleSystem: {fileID: 2426463532431819465}
+  VisualModel: {fileID: 427126857075581766}
+  <DestroyParticleSystem>k__BackingField: {fileID: 2426463532431819465}
   _healthBoostAmount: 10
 --- !u!135 &1431890835144094738
 SphereCollider:

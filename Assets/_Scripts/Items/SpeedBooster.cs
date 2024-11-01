@@ -9,6 +9,7 @@ public class SpeedBooster : UsableItem
         base.UseItem(data);
 
         data.Speed += _speedBoostAmount;
-        Destroy(gameObject, _destParticleSystem.main.duration);
+        VisualModel.SetActive(false);
+        Destroy(gameObject, DestroyParticleSystem.main.duration);
     }
 }

@@ -80,7 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee02e36e4552a22418b00e06cfe6de77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destParticleSystem: {fileID: 6650078744859563816}
+  VisualModel: {fileID: 3437781294829550903}
+  <DestroyParticleSystem>k__BackingField: {fileID: 6650078744859563816}
   _bulletPrefab: {fileID: -4366318880836802066, guid: deb5aa374a60ddb44962b9e61a08de58,
     type: 3}
 --- !u!135 &4160542051166319510
