@@ -11,7 +11,7 @@ public class ItemCollector
         _inventory = inventory;
     }
 
-    public void TryColllectItem(Collider collider)
+    public void TryCollectItem(Collider collider)
     {
         if (collider.TryGetComponent(out UsableItem item))
         {

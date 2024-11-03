@@ -28,12 +28,8 @@ public class CharacterStatsView : MonoBehaviour
     }
 
     private void OnHealthChanged(int healthAmount)
-    {
-        _healthText.text = HealthText + healthAmount;
-    }
+        => _healthText.text = HealthText + healthAmount;
 
     private void OnSpeedChanged(float speedAmount)
-    {
-        _speedText.text = SpeedText + speedAmount;
-    }
+        => _speedText.text = SpeedText + speedAmount;
 }

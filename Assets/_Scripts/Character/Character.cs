@@ -11,7 +11,6 @@ public class Character : MonoBehaviour
     [SerializeField] private int _health;
 
     [SerializeField] private float _speed;
-    [SerializeField] private float _rotationAngleSpeed;
 
     private InputSystem _input;
 
@@ -35,13 +34,10 @@ public class Character : MonoBehaviour
 
         CharacterData = new EntityData(_health, _speed, _shootPoint);
 
-        _mover = new Mover(transform, CharacterData, _rotationAngleSpeed);
+        _mover = new Mover(transform, CharacterData);
 
         _inventory = new Inventory(_itemHandleTransform);
         _itemCollector = new ItemCollector(_inventory);
-
-        _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.isKinematic = true;
     }
 
     private void Update()
@@ -51,7 +47,10 @@ public class Character : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (_inventory.HasItem() == false)
+            {
+                Debug.Log("No item in inventory");
                 return;
+            }
 
             _item = _inventory.GetItem();
 
@@ -60,9 +59,15 @@ public class Character : MonoBehaviour
 
         _mover.ProcessMove(_inputDirection);
     }
+    
+    private void OnHealthChanged(int healthAmount)
+        => _health = healthAmount;
+    
+    private void OnSpeedChanged(float speedAmount)
+        => _speed = speedAmount;
 
     private void OnTriggerEnter(Collider other)
-        => _itemCollector.TryColllectItem(other);
+        => _itemCollector.TryCollectItem(other);
 
     private void OnEnable()
     {
@@ -75,10 +80,4 @@ public class Character : MonoBehaviour
         CharacterData.HealthChanged -= OnHealthChanged;
         CharacterData.SpeedChanged -= OnSpeedChanged;
     }
-
-    private void OnHealthChanged(int healthAmount)
-        => _health = healthAmount;
-
-    private void OnSpeedChanged(float speedAmount)
-        => _speed = speedAmount;
 }

@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
 
-    [SerializeField]private CapsuleCollider Collider;
+    [SerializeField] private CapsuleCollider Collider;
 
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _destroyTime;
@@ -15,4 +15,7 @@ public class Bullet : MonoBehaviour
         _rigidbody.AddForce(direction * _bulletSpeed, ForceMode.Impulse);
         Destroy(gameObject, _destroyTime);
     }
+
+    private void OnCollisionEnter(Collision collision)
+        => Destroy(gameObject);
 }

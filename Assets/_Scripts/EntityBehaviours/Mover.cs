@@ -8,13 +8,10 @@ public class Mover
 
     private EntityData _entityData;
 
-    private float _rotationAngleSpeed;
-
-    public Mover(Transform transform, EntityData entityData, float roatationAngleSpeed)
+    public Mover(Transform transform, EntityData entityData)
     {
         _transform = transform;
         _entityData = entityData;
-        _rotationAngleSpeed = roatationAngleSpeed;
     }
 
     public void ProcessMove(Vector3 direction)
@@ -24,8 +21,6 @@ public class Mover
 
         _transform.position += direction * _entityData.Speed * Time.deltaTime;
 
-        /*Quaternion targetRotation = Quaternion.LookRotation(direction);
-        _transform.rotation = Quaternion.Lerp(_transform.rotation, targetRotation, _rotationAngleSpeed * Time.deltaTime);*/
         _transform.forward = direction;
     }
 }

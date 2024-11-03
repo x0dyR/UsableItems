@@ -6,7 +6,5 @@ public abstract class UsableItem : MonoBehaviour
     [field: SerializeField] public ParticleSystem DestroyParticleSystem { get; protected set; }
 
     public virtual void UseItem(EntityData data)
-    {
-        DestroyParticleSystem.Play();
-    }
+        => DestroyParticleSystem.Play();
 }
