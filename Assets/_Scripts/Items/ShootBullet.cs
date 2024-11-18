@@ -10,7 +10,6 @@ public class ShootBullet : UsableItem
 
         Bullet bullet = Instantiate(_bulletPrefab, data.Transform.position, data.Transform.rotation, null);
         bullet.Launch(data.Transform.forward);
-        VisualModel.SetActive(false);
-        Destroy(gameObject, DestroyParticleSystem.main.duration);
+        Destroy(gameObject);
     }
 }

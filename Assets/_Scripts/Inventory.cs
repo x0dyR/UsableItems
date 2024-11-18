@@ -13,15 +13,16 @@ public class Inventory
 
     public bool HasItem() => _item != null;
 
-    public UsableItem GetItem()
+    public bool TryGetItem(out UsableItem item)
     {
         if (HasItem() == false)
-            return null;
+        {
+            item = null;
+            return false;
+        }
 
-        UsableItem selectedItem = _item;
-        _item = null;
-
-        return selectedItem;
+        item = _item;
+        return true;
     }
 
     public void PutItem(UsableItem item)
@@ -31,7 +32,7 @@ public class Inventory
 
         item.transform.SetParent(_itemHandleTransform.transform);
         item.transform.localPosition = Vector3.zero;
-    
+
         _item = item;
     }
 }

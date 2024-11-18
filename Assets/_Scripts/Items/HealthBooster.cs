@@ -10,7 +10,6 @@ public class HealthBooster : UsableItem
 
         data.Health += _healthBoostAmount;
 
-        VisualModel.SetActive(false);
-        Destroy(gameObject, DestroyParticleSystem.main.duration);
+        Destroy(gameObject);
     }
 }

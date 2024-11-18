@@ -52,17 +52,16 @@ public class Character : MonoBehaviour
                 return;
             }
 
-            _item = _inventory.GetItem();
-
-            _item.UseItem(CharacterData);
+            if (_inventory.TryGetItem(out _item))
+                _item.UseItem(CharacterData);
         }
 
         _mover.ProcessMove(_inputDirection);
     }
-    
+
     private void OnHealthChanged(int healthAmount)
         => _health = healthAmount;
-    
+
     private void OnSpeedChanged(float speedAmount)
         => _speed = speedAmount;
 
